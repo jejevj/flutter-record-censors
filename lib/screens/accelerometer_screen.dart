@@ -32,7 +32,13 @@ class _AccelerometerScreenState extends State<AccelerometerScreen> {
     setState(() {
       _isRecording = true;
       _data.clear(); // Clear previous data before starting a new recording
-      _data.add(['label', 'acc_x', 'acc_y', 'acc_z']); // Add header with label
+      _data.add([
+        'timestamp',
+        'label',
+        'acc_x',
+        'acc_y',
+        'acc_z',
+      ]); // Add header with label
     });
 
     // Start listening to accelerometer events
@@ -43,7 +49,12 @@ class _AccelerometerScreenState extends State<AccelerometerScreen> {
           _y = event.y;
           _z = event.z;
         });
+
+        String timestamp = DateTime.now()
+            .toIso8601String(); // Get the current timestamp
+
         _data.add([
+          timestamp, // Add timestamp
           _selectedLabel,
           _x,
           _y,

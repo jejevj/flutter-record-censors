@@ -33,6 +33,7 @@ class _GyroscopeScreenState extends State<GyroscopeScreen> {
       _isRecording = true;
       _data.clear(); // Clear previous data before starting a new recording
       _data.add([
+        'timestamp', // Header for timestamp
         'label',
         'gyro_x',
         'gyro_y',
@@ -48,7 +49,11 @@ class _GyroscopeScreenState extends State<GyroscopeScreen> {
           _gy = event.y;
           _gz = event.z;
         });
+
+        String timestamp = DateTime.now()
+            .toIso8601String(); // Get the current timestamp
         _data.add([
+          timestamp, // Add timestamp
           _selectedLabel,
           _gx,
           _gy,
